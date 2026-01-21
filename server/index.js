@@ -34,10 +34,10 @@ app.use(express.json()); // Parse JSON request bodies (not used in upload, but u
 const SERVER_PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
 
 // Max size of the uploaded archive itself (before extraction)
-const MAX_UPLOAD_BYTES = 400 * 1024 * 1024; // 100MB
+const MAX_UPLOAD_BYTES = 400 * 1024 * 1024; // 400MB
 
 // Extraction safety limits (zip-bomb mitigation)
-const MAX_EXTRACTED_TOTAL_BYTES = 1500 * 1024 * 1024; // 600MB total extracted size
+const MAX_EXTRACTED_TOTAL_BYTES = 1500 * 1024 * 1024; // 1.5GB total extracted
 const MAX_EXTRACTED_FILE_BYTES = 30 * 1024 * 1024; // 30MB per extracted file
 const MAX_EXTRACTED_FILES = 15000; // Max number of extracted files
 
@@ -83,7 +83,6 @@ const ALLOWED_ARCHIVE_EXTENSIONS = [".zip", ".rar", ".7z"];
 
 const uploadArchive = multer({
   storage: storageEngine,
-
   // Hard limit on upload size
   limits: { fileSize: MAX_UPLOAD_BYTES },
 

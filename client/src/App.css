@@ -9,9 +9,9 @@ html, body, #root {
 * { box-sizing: border-box; }
 
 body {
-  direction: rtl;
+  direction: ltr;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
-  background: #f5f7fb;
+  background: #0ea9e9;
   color: #0f172a;
 }
 
