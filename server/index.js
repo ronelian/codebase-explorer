@@ -202,9 +202,10 @@ app.use((err, req, res, next) => {
     return res.status(400).json({ ok: false, error: "Only ZIP / RAR / 7Z files are allowed." });
   }
 
-  if (err && err.code === "LIMIT_FILE_SIZE") {
-    return res.status(413).json({ ok: false, error: "File is too large (limit: 100MB)." });
-  }
+if (err && err.code === "LIMIT_FILE_SIZE") {
+  return res.status(413).json({ ok: false, error: "File is too large (limit: 400MB)." });
+}
+
 
   if (err && err.message === "UNSAFE_ZIP_PATH") {
     return res.status(400).json({ ok: false, error: "Invalid ZIP: unsafe file path found inside the archive." });
@@ -556,7 +557,7 @@ function buildAnalysisStats(rootDir, filePathsAbs, graph) {
 /**
  * Schedules deletion of the uploaded archive and the extracted directory after TTL.
  */
-function scheduleJobCleanup(archivePath, extractionTargetDir) {
+function scheduleJobCleanup(archivePath, extractionTargetDir) { 
   setTimeout(async () => {
     try {
       await safeRemovePath(archivePath);

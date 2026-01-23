@@ -20,7 +20,7 @@ import "./app.css";
 /* =========================
  * Constants & Small Helpers
  * ========================= */
-const API_BASE_URL = "http://localhost:4000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
 
 /**
  * Returns a shorter display version of a path (last 2 segments).
